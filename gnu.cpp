@@ -42,7 +42,7 @@ int main() {
     cout<<endl;
     //gnu
     fprintf(pipe,"%s\n","set multiplot");
-    fprintf(pipe,"set xrange [0:%f]\n",max(maximumV,maximumK)+max(maximumV,maximumK)*0.1);
+    fprintf(pipe,"set xrange [0:%f]\n",max(max(maximumV,maximumK),T)+max(max(maximumV,maximumK),T)*0.1);
     fprintf(pipe,"set yrange [0:%f]\n",max(maximumV,maximumK)+max(maximumV,maximumK)*0.1);
     //define colors
     fprintf(pipe,"%s\n","set style line 1 lt rgb \"blue\" lw 1");
@@ -50,25 +50,25 @@ int main() {
     fprintf(pipe,"%s\n","set style line 3 lt rgb \"yellow\" lw 3");
     fprintf(pipe,"%s\n","set style line 4 lt rgb \"green\" lw 4");
     //v(k(t))
-    fprintf(pipe,"%s\n","plot '-' using 1:2 ls 1 title 'v(k(t))' with points ");
+    fprintf(pipe,"%s\n","plot '-' using 1:2 ls 1 title 'v(k(t))' with lines ");
     for(int i=0;i<=N;i++){
         fprintf(pipe,"%f\t%f\n",ks[i],vs[i]);
     }
     fprintf(pipe,"%s\n","e");
     //k(v(t))
-    fprintf(pipe,"%s\n","plot '-' using 1:2 ls 2 title 'k(v(t))' with points");
+    fprintf(pipe,"%s\n","plot '-' using 1:2 ls 2 title 'k(v(t))' with lines");
     for(int i=0;i<=N;i++){
         fprintf(pipe,"%f\t%f\n",vs[i],ks[i]);
     }
     fprintf(pipe,"%s\n","e");
     //victims
-    fprintf(pipe,"%s\n","plot '-' using 1:2 ls 3 title 'victims' with points ");
+    fprintf(pipe,"%s\n","plot '-' using 1:2 ls 3 title 'victims' with lines ");
     for(int i=0;i<=N;i++){
         fprintf(pipe,"%f\t%f\n",ts[i],vs[i]);
     }
     fprintf(pipe,"%s\n","e");
     //killers
-    fprintf(pipe,"%s\n","plot '-' using 1:2 ls 4 title 'killers' with points");
+    fprintf(pipe,"%s\n","plot '-' using 1:2 ls 4 title 'killers' with lines");
     for(int i=0;i<=N;i++){
         fprintf(pipe,"%f\t%f\n",ts[i],ks[i]);
     }
